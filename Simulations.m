@@ -17,7 +17,7 @@ clear;close;clc
 
 % Load the reflectances - The data will be 25 x 81, where 1st row is wavelength, and
 % rows 2-25 are the patches of the color checker.
-refl = importdata('/Users/deryaakkaynak/Documents/Research_Local/Github/Colorimetry/Underwater-colorimetry-main/MacbethColorCheckerReflectances.csv');
+refl = importdata('C:\Users\PIET\Documents\GitHub\Underwater-colorimetry\MacbethColorCheckerReflectances.csv');
 % Inspect the data — pay attention that the wavelength range is 380:5:780.
 % This commend will print out the wavelength range:
 refl.data(1,:)
@@ -25,13 +25,13 @@ refl.data(1,:)
 
 %% Load the relevant camera's curves
 % Don't forget to also load the second camera!
-cam = importdata('/Users/deryaakkaynak/Documents/Research_Local/Github/Colorimetry/Underwater-colorimetry-main/Nikon_D90.csv');
+cam = importdata('C:\Users\PIET\Documents\GitHub\Underwater-colorimetry\Nikon_D90.csv');
 % Again, inspect the wavelength ranges, this dataset is 400:10:700. This commend will print out the wavelength range:
 cam.data(:,1)
 
 %% Load the light data
 % Don't forget to also load the second illuminant
-light = importdata('/Users/deryaakkaynak/Documents/Research_Local/Github/Colorimetry/Underwater-colorimetry-main/illuminant-D65.csv');
+light = importdata('C:\Users\PIET\Documents\GitHub\Underwater-colorimetry\illuminant-D65.csv');
 % Inspect the wavelength ranges. This dataset is 300:5:830 nm.
 light.data(:,1)
 
@@ -75,7 +75,7 @@ exportgraphics(gcf,'Macbeth_wb.png')
 close all
 
 % Load standard observer curves
-stdobs = importdata('/Users/deryaakkaynak/Documents/Research_Local/Github/Colorimetry/Underwater-colorimetry-main/CIEStandardObserver.csv');
+stdobs = importdata('C:\Users\PIET\Documents\GitHub\Underwater-colorimetry\CIEStandardObserver.csv');
 
 % interpolate the wl to the same range
 stdobs_spectra = interp1(stdobs(:,1),stdobs(:,2:4),WL);

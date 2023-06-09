@@ -22,20 +22,30 @@ writeTextFile(saveFolder,'stageSettings',stage);
 writeTextFile(saveFolder,'cam_settings',0);
 writeTextFile(saveFolder,'lastStage',stage);
 
-pathParts = strsplit(dngPath,filesep);
-fileName = pathParts{end};
-shortName = fileName(1:end-4);
-outputFilePath = fullfile(tiffSavePath,[shortName,'.tif']);
+% pathParts = strsplit(dngPath,filesep);
+% fileName = pathParts{end};
+% shortName = fileName(1:end-4);
+% outputFilePath = fullfile(tiffSavePath,[shortName,'.tif']);
 %
 %status = system([fullfile('.','dngOneExeSDK','dng_validate.exe -16 -cs1 -tif ') ,  outputFilePath ' ' dngPath]);
-status = system([fullfile('.','dngOneExeSDK','dng_validate.exe -16 -3 ')  outputFilePath ' ' dngPath]);
+dngFiles = dir(fullfile(dngPath, '*.dng'));
 
-if status~=0
-    fprintf(2,['dng2tiff: There was a problem processing the DNG image ',dngPath,'\n']);
-    I = [];
-else
-    % outputs from the Karaimer & Brown code are uint16. Scale to be in
-    % [0,1];
-    I = double(imread(outputFilePath))./2^16;
+for k=1:length(dngFiles)
+    thisFile = dngFiles(k).name;
+%     pathParts = strsplit(dngPath,filesep);
+%     fileName = pathParts{end};
+    shortName = thisFile(1:end-4);
+    outputFilePath = fullfile(tiffSavePath,[shortName,'.tif']);
+    dngFile = dngFiles(k).name
+    status = system(join([fullfile('.','dngOneExeSDK','dng_validate.exe -16 -3 ')  outputFilePath ' ' [dngPath,'\', dngFile]]));
+
+    if status~=0
+        fprintf(2,['dng2tiff: There was a problem processing the DNG image ',dngPath,'\n']);
+        I = [];
+    else
+        % outputs from the Karaimer & Brown code are uint16. Scale to be in
+        % [0,1];
+        I = double(imread(outputFilePath))./2^16;
+    end
     
 end

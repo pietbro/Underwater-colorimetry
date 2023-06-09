@@ -9,7 +9,7 @@
 clear all; close all;clc; warning off
 
 %% LOAD AN IMAGE THAT HAS A CALIBRATION TARGET IN THE SCENE
-I = im2double(imread('NikonImage.png'));
+I = im2double(imread('CanonImage.png'));
 
 s = size(I);
 figure;imshow(I*2)

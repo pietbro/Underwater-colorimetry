@@ -159,16 +159,16 @@ XYZ_wb = XYZD65./XYZ_D65wp;
 % Derive a 3x3 transform from white balanced camera RGB to white balanced
 % XYZ
 T1 = XYZ_wb' * pinv(rgb_wb1)';
-xyz_image1 = (T1*rgb_wb1')';
+xyz_image1 = (T*rgb_wb1')';
 
 T2 = XYZ_wb' * pinv(rgb_wb2)';
-xyz_image2 = (T2*rgb_wb2')';
+xyz_image2 = (T*rgb_wb2')';
 
-% T3 = XYZ_wb' * pinv(rgb_wb3)';
-% xyz_image3 = (T3*rgb_wb3)';
+T3 = XYZ_wb' * pinv(rgb_wb3)';
+xyz_image3 = (T*rgb_wb3)';
 
 T4 = XYZ_wb' * pinv(rgb_wb4)';
-xyz_image4 = (T4*rgb_wb4')';
+xyz_image4 = (T*rgb_wb4')';
 
 
 % Plot them on the chromaticity diagram 

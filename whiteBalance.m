@@ -28,7 +28,8 @@ if nargin<4
 end
 
 WS = getPatchMean(inImg,maskWS);
-DS = getPatchMean(inImg,maskDS);
+% DS = getPatchMean(inImg,maskDS);
+DS = [0 0 0];
 
 Rlayer = double(inImg(:,:,1));
 Glayer = double(inImg(:,:,2));
